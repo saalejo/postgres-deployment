@@ -1,0 +1,17 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: postgres-pv
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  claimRef:
+    namespace: postgres
+    name: postgres-pvc
+  hostPath:
+    path: "/mnt/agapanto_data"
