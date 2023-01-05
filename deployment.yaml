@@ -25,7 +25,12 @@ spec:
             - name: db
               image: postgres:11
               ports:
-                - containerPort: 5432
+                - containerPort: 5432              
+              args:
+              - pg_resetwal
+              - /var/lib/postgresql/data
+              securityContext:
+                runAsUser: 999
               envFrom:
                 - configMapRef:
                     name: postgres-config
